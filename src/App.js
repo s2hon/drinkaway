@@ -1,4 +1,8 @@
 import React, {useReducer} from "react";
+import Layout from './components/Layout';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import data from './data/listdb.json'
 
 function Count() {
   const [count, dispatch] = useReducer((state, action) => {
@@ -9,49 +13,23 @@ function Count() {
     }
   }, 0);
 
-  const dogs = [
-    {
-      name: "Whatdabuddabingbong",
-    },
-    {
-      name: "Real Quick",
-    },
-    {
-      name: "Cool",
-    },
-    {
-      name: "Questions?... Silence",
-    },
-    {
-      name: "Good Luck",
-    },
-    {
-      name: "Alrighty Folks",
-    },
-    {
-      name: "BOXES",
-    },
-    {
-      name: "Practice",
-    },
-    {
-      name: "we're going to give you a chance to try it yourself",
-    }
-  ];
-
   return (
     <div className="App">
-      <div className="row mt-5">
-        {dogs.map(item => (
-          <div key={item.name} className="card mx-auto col-4">
-            <div className="card-body">
-              <h4 className="card-title">{item.name}</h4>
-              <p className="card-text">{count}</p>
-              <button className="btn btn-primary" onClick={() => dispatch("add")}>Drink!</button>
-            </div>
+      <Header />
+          <Layout>
+          <div className="row mt-5">
+            {data.map(item => (
+              <div key={item.name} className="card mx-auto col-4">
+                <div className="card-body">
+                  <h4 className="card-title">{item.name}</h4>
+                  <p className="card-text">{count}</p>
+                  <button className="btn btn-primary" onClick={() => dispatch("add")}>Drink!</button>
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </Layout>
+      <Footer/>
     </div>
   );
 }
